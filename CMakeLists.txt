@@ -157,6 +157,7 @@ include_directories(
 catkin_install_python(
   PROGRAMS
     scripts/recorder.py
+    scripts/streamer.py
   DESTINATION 
     ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
