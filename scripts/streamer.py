@@ -28,9 +28,20 @@ def main():
     
     #-[] On node shutdown, close camera and visualization window
     def on_shutdown():
-        camera.release()
+        if config.verbose:
+            rospy.loginfo("Shutting down node.")
+        
+        #-[] Close camera
+        if camera.isOpened():
+            camera.release()
+            if config.verbose:
+                rospy.loginfo("Camera closed.")
+        
+        #-[] Close window
         if config.display:
             cv2.destroyWindow("Camera")
+            if config.verbose:
+                rospy.loginfo("Window destroyed.")
     rospy.on_shutdown(on_shutdown)
 
     #-[] Main loop
